@@ -41,6 +41,17 @@ namespace WpfAD
                 PostalCode = tb_PostalCode.Text,
                 City = tb_City.Text,
             });  // Kontakter stoppas in direkt i listan utan behov till variabler
+
+            ClearFields();
         } 
+        private void ClearFields()
+        {
+            tb_FirstName.Text = "";
+            tb_LastName.Text = "";
+            tb_Email.Text = "";
+            tb_StreetName.Text = "";
+            tb_PostalCode.Text = "";
+            tb_City.Text = "";
+        }
     }
 }
