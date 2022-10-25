@@ -36,10 +36,10 @@ namespace WpfAD
 
         private void btn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
         {
-            if (btn_Update.Visibility == Visibility.Collapsed)
-            {
-                btn_Add.Visibility = Visibility.Visible;
-            }
+            //if (btn_Update.Visibility == Visibility.Collapsed)
+            //{
+            //    btn_Add.Visibility = Visibility.Visible;
+            //}
             var contact = contacts.FirstOrDefault(x => x.Email == tb_Email.Text);
             if(contact == null)
             {
@@ -62,7 +62,7 @@ namespace WpfAD
 
             ClearFields();
         } 
-        private void ClearFields()
+        private void ClearFields() 
         {
             tb_FirstName.Text = "";
             tb_LastName.Text = "";
@@ -103,10 +103,10 @@ namespace WpfAD
 
         private void btn_Update_Click(object sender, RoutedEventArgs e)
         {
-            if (btn_Add.Visibility == Visibility.Collapsed)
-            {
-                btn_Update.Visibility = Visibility.Visible;
-            }
+            //if (btn_Add.Visibility == Visibility.Collapsed)
+            //{
+            //    btn_Update.Visibility = Visibility.Visible;
+            //}
 
             var contact = (ContactPerson)lv_Contacts.SelectedItems[0]!;
             var index = lv_Contacts.Items.IndexOf(contact);
