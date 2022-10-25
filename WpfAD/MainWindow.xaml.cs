@@ -91,12 +91,11 @@ namespace WpfAD
                 tb_Email.Text = contact.Email;
                 tb_StreetName.Text = contact.StreetName;
                 tb_PostalCode.Text = contact.PostalCode;
-                tb_City.Text = contact.City;
+                tb_City.Text = contact.City; 
             }
-            catch { }
-
-                            
+            catch { }                    
         }
+        
 
         private void tbn_Update_Click(object sender, RoutedEventArgs e)
         {
@@ -104,16 +103,20 @@ namespace WpfAD
             var index = lv_Contacts.Items.IndexOf(contact);
             try
             {
-                contacts[0].FirstName = tb_FirstName.Text;
-                contacts[0].LastName = tb_LastName.Text;
-                contacts[0].Email = tb_Email.Text;
-                contacts[0].StreetName = tb_StreetName.Text;
-                contacts[0].PostalCode = tb_PostalCode.Text;
-                contacts[0].City = tb_City.Text;
-            }catch { }
-            
+                contacts[index].FirstName = tb_FirstName.Text;
+                contacts[index].LastName = tb_LastName.Text;
+                contacts[index].Email = tb_Email.Text;
+                contacts[index].StreetName = tb_StreetName.Text;
+                contacts[index].PostalCode = tb_PostalCode.Text;
+                contacts[index].City = tb_City.Text;
+            }
+            catch { }
+            lv_Contacts.Items.Refresh();
+            ClearFields();
+            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contact));
+            try { contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactPerson>>(_fileManager.Read(_filePath)); } //försöker att läsa in listan från en Json-fil
+            catch { }
 
-            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contacts));
         }
     }
 }
