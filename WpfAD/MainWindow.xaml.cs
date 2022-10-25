@@ -32,15 +32,23 @@ namespace WpfAD
 
         private void tbn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
         {
-            contacts.Add(new ContactPerson
-            { 
-                FirstName = tb_FirstName.Text,
-                LastName = tb_LastName.Text,
-                Email = tb_Email.Text,
-                StreetName = tb_StreetName.Text,
-                PostalCode = tb_PostalCode.Text,
-                City = tb_City.Text,
-            });  // Kontakter stoppas in direkt i listan utan behov till variabler
+            var contact = contacts.FirstOrDefault(x => x.Email == tb_Email.Text);
+            if(contact == null)
+            {
+                contacts.Add(new ContactPerson
+                {
+                    FirstName = tb_FirstName.Text,
+                    LastName = tb_LastName.Text,
+                    Email = tb_Email.Text,
+                    StreetName = tb_StreetName.Text,
+                    PostalCode = tb_PostalCode.Text,
+                    City = tb_City.Text,
+                });  // Kontakter stoppas in direkt i listan utan behov till variabler
+            }
+            else
+            {
+                MessageBox.Show("Det finns redan en kontakt med samma e-postadress.");
+            }
 
             ClearFields();
         } 
@@ -52,6 +60,33 @@ namespace WpfAD
             tb_StreetName.Text = "";
             tb_PostalCode.Text = "";
             tb_City.Text = "";
+        }
+
+        private void tbn_Remove_Click(object sender, RoutedEventArgs e) // Borttagning fuktion
+        {
+            var button = sender as Button;
+            var contact = (ContactPerson)button!.DataContext;
+
+            contacts.Remove(contact);
+        }
+
+        private void lv_Contacts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var contact = (ContactPerson)lv_Contacts.SelectedItems[0]!;
+
+                tb_FirstName.Text = contact.FirstName;
+                tb_LastName.Text = contact.LastName;
+                tb_Email.Text = contact.Email;
+                tb_StreetName.Text = contact.StreetName;
+                tb_PostalCode.Text = contact.PostalCode;
+                tb_City.Text = contact.City;
+            }
+            catch { }
+            
+           
+
         }
     }
 }
