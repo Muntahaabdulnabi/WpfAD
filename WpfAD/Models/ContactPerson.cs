@@ -16,9 +16,6 @@ namespace WpfAD.Models
         public string PostalCode { get; set; } = null!;
         public string City { get; set; } = null!;
 
-        public string FullName = "$ {FirstName} {LastName}"; // Klalkylerat property
-
-
-
+        public string FullName => $"{FirstName} {LastName}";    
     }
 }

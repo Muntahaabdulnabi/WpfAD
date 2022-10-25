@@ -69,7 +69,33 @@
        
         <ListView Grid.Column="1"
                   x:Name="lv_Contacts"
-                  Margin="20">
+                  Margin="20"
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{Binding FullName}"/>
+                            <TextBlock Text="{Binding Email}" FontSize="10"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                FontFamily="Segoe MDL2 Assets" 
+                                Content="&#xE74D;"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                >
+                            
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             
         </ListView>
 
