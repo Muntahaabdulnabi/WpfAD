@@ -27,6 +27,7 @@ namespace WpfAD
         {
             InitializeComponent();
             contacts = new ObservableCollection<ContactPerson>(); //Skapar en instanciering av lista
+            lv_Contacts.ItemsSource = contacts; // Källan som som ska hämta uppgifterna ifrån är contacts lista
         }
 
         private void tbn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
