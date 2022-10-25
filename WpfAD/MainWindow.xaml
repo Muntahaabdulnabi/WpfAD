@@ -11,6 +11,45 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        
+            <StackPanel Grid.Row="0" Margin="10">
+                <TextBlock Text="Förnamn"/>
+                <TextBox x:Name="tb_FirstName"/>
+
+                <TextBlock Text="Efternamn"/>
+                <TextBox x:Name="tb_LastName"/>
+
+                <TextBlock Text="E-postadress"/>
+                <TextBox x:Name="tb_Email"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Gatunamn"/>
+                    <TextBox x:Name="tb_StreetName"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Margin="8 0">
+                    <TextBlock Text="Postnummer"/>
+                    <TextBox x:Name="tb_PostalCode"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Ort"/>
+                    <TextBox x:Name="tb_City"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        
+       
+        <ListView Grid.Column="1" Margin="10">
+            
+        </ListView>
 
     </Grid>
 </Window>
