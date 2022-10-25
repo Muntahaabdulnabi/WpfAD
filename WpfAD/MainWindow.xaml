@@ -52,8 +52,8 @@
                 </Grid>
             </StackPanel>
             <Button Grid.Row="1"
-                    x:Name="tbn_Add"
-                    Click="tbn_Add_Click"   
+                    x:Name="btn_Add"
+                    Click="btn_Add_Click"   
                     Content="Lägg till"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
@@ -63,8 +63,8 @@
             </Button>   <!--Knapp med Functionen lägga till (kontakter)-->
 
             <Button Grid.Row="1"
-                    x:Name="tbn_Update"
-                    Click="tbn_Update_Click"
+                    x:Name="btn_Update"
+                    Click="btn_Update_Click"
                     Content="Spara"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"

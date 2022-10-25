@@ -34,8 +34,12 @@ namespace WpfAD
             lv_Contacts.ItemsSource = contacts; // Källan som som ska hämta uppgifterna ifrån är contacts lista
         }
 
-        private void tbn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
+        private void btn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
         {
+            if (btn_Update.Visibility == Visibility.Collapsed)
+            {
+                btn_Add.Visibility = Visibility.Visible;
+            }
             var contact = contacts.FirstOrDefault(x => x.Email == tb_Email.Text);
             if(contact == null)
             {
@@ -49,14 +53,12 @@ namespace WpfAD
                     City = tb_City.Text,
                 });  // Kontakter stoppas in direkt i listan utan behov till variabler
 
-                _fileManager.Save(_filePath, JsonConvert.SerializeObject(contact));
+                _fileManager.Save(_filePath, JsonConvert.SerializeObject(contacts));                
             }
-            
             else
             {
                 MessageBox.Show("Det finns redan en kontakt med samma e-postadress.");
             }
-;
 
             ClearFields();
         } 
@@ -76,6 +78,7 @@ namespace WpfAD
             var contact = (ContactPerson)button!.DataContext;
 
             contacts.Remove(contact);
+            _fileManager?.Save(_filePath, JsonConvert.SerializeObject(contacts));
 
             ClearFields();
         }
@@ -93,13 +96,19 @@ namespace WpfAD
                 tb_PostalCode.Text = contact.PostalCode;
                 tb_City.Text = contact.City; 
             }
-            catch { }                    
+            catch { }
+            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contacts));
         }
-        
 
-        private void tbn_Update_Click(object sender, RoutedEventArgs e)
+
+        private void btn_Update_Click(object sender, RoutedEventArgs e)
         {
-           var contact = (ContactPerson)lv_Contacts.SelectedItems[0]!;
+            if (btn_Add.Visibility == Visibility.Collapsed)
+            {
+                btn_Update.Visibility = Visibility.Visible;
+            }
+
+            var contact = (ContactPerson)lv_Contacts.SelectedItems[0]!;
             var index = lv_Contacts.Items.IndexOf(contact);
             try
             {
@@ -113,9 +122,9 @@ namespace WpfAD
             catch { }
             lv_Contacts.Items.Refresh();
             ClearFields();
-            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contact));
-            try { contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactPerson>>(_fileManager.Read(_filePath)); } //försöker att läsa in listan från en Json-fil
-            catch { }
+            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contacts));
+            //try { contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactPerson>>(_fileManager.Read(_filePath)); } //försöker att läsa in listan från en Json-fil
+            //catch { }
 
         }
     }
