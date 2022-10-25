@@ -8,46 +8,66 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         
-            <StackPanel Grid.Row="0" Margin="10">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="20">
                 <TextBlock Text="Förnamn" Style="{StaticResource label}"/>
                 <TextBox x:Name="tb_FirstName" Style="{StaticResource field}"/>
 
-            <TextBlock Text="Efternamn" Style="{StaticResource label}"/>
-            <TextBox x:Name="tb_LastName" Style="{StaticResource field}"/>
+                <TextBlock Text="Efternamn" Style="{StaticResource label}"/>
+                <TextBox x:Name="tb_LastName" Style="{StaticResource field}"/>
 
-            <TextBlock Text="E-postadress" Style="{StaticResource label}"/>
-            <TextBox x:Name="tb_Email" Style="{StaticResource field}"/>
+                <TextBlock Text="E-postadress" Style="{StaticResource label}"/>
+                <TextBox x:Name="tb_Email" Style="{StaticResource field}"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Gatunamn" Style="{StaticResource label}"/>
-                    <TextBox x:Name="tb_StreetName" Style="{StaticResource field}"/>
-                </StackPanel>
-                
-                <StackPanel Grid.Column="1" Margin="8 0">
-                    <TextBlock Text="Postnummer" Style="{StaticResource label}"/>
-                    <TextBox x:Name="tb_PostalCode" Style="{StaticResource field}"/>
-                </StackPanel>
-                
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="Ort" Style="{StaticResource label}"/>
-                    <TextBox x:Name="tb_City" Style="{StaticResource field}"/>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Gatunamn" Style="{StaticResource label}"/>
+                        <TextBox x:Name="tb_StreetName" Style="{StaticResource field}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="8 0">
+                        <TextBlock Text="Postnummer" Style="{StaticResource label}"/>
+                        <TextBox x:Name="tb_PostalCode" Style="{StaticResource field}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Ort" Style="{StaticResource label}"/>
+                        <TextBox x:Name="tb_City" Style="{StaticResource field}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Button Grid.Row="1"
+                    x:Name="tbn_Add"
+                    Click="tbn_Add_Click"   
+                    Content="Lägg till"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="30"
+                    Padding="35 10"
+                    FontWeight="DemiBold">
+
+            </Button>
+            <!--Knapp med Functionen lägga till (kontakter)-->
+
+        </Grid>
         
        
-        <ListView Grid.Column="1" Margin="10">
+        <ListView Grid.Column="1" Margin="20">
             
         </ListView>
 

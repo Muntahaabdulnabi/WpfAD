@@ -24,5 +24,10 @@ namespace WpfAD
         {
             InitializeComponent();
         }
+
+        private void tbn_Add_Click(object sender, RoutedEventArgs e) //Lägg till metod
+        {
+
+        }
     }
 }
