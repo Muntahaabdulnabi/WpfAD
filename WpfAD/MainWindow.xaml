@@ -60,9 +60,21 @@
                     Margin="30"
                     Padding="35 10"
                     FontWeight="DemiBold">
+            </Button>   <!--Knapp med Functionen lägga till (kontakter)-->
 
+            <Button Grid.Row="1"
+                    x:Name="tbn_Update"
+                    Click="tbn_Update_Click"
+                    Content="Spara"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="30"
+                    Padding="40 10"
+                    FontWeight="DemiBold">
             </Button>
-            <!--Knapp med Functionen lägga till (kontakter)-->
+            <!--Knapp med Functionen uppdatera (kontakter)-->
+
+
 
         </Grid>
         

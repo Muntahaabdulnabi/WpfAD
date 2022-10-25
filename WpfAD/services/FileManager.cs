@@ -15,13 +15,13 @@ namespace WpfAD.services
     }
     internal class FileManager : IFileManager
     {
-        public string Read(string filePath)
+        public string Read(string filePath)   // Läs Funktion
         {
             using var sr = new StreamReader(filePath);
             return sr.ReadToEnd();
         }
 
-        public void Save(string filePath, string content)
+        public void Save(string filePath, string content) // Skriv Funktion
         {
             using var sw = new StreamWriter(filePath);
             sw.Write(content);

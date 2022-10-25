@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAD.Models;
+using WpfAD.services;
 
 namespace WpfAD
 {
@@ -22,7 +24,9 @@ namespace WpfAD
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IFileManager _fileManager = new FileManager();
         private ObservableCollection<ContactPerson> contacts; // Det sk finnas en lista
+        private string _filePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\File.Json";
         public MainWindow()
         {
             InitializeComponent();
@@ -44,11 +48,15 @@ namespace WpfAD
                     PostalCode = tb_PostalCode.Text,
                     City = tb_City.Text,
                 });  // Kontakter stoppas in direkt i listan utan behov till variabler
+
+                _fileManager.Save(_filePath, JsonConvert.SerializeObject(contact));
             }
+            
             else
             {
                 MessageBox.Show("Det finns redan en kontakt med samma e-postadress.");
             }
+;
 
             ClearFields();
         } 
@@ -68,6 +76,8 @@ namespace WpfAD
             var contact = (ContactPerson)button!.DataContext;
 
             contacts.Remove(contact);
+
+            ClearFields();
         }
 
         private void lv_Contacts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,9 +94,26 @@ namespace WpfAD
                 tb_City.Text = contact.City;
             }
             catch { }
-            
-           
 
+                            
+        }
+
+        private void tbn_Update_Click(object sender, RoutedEventArgs e)
+        {
+           var contact = (ContactPerson)lv_Contacts.SelectedItems[0]!;
+            var index = lv_Contacts.Items.IndexOf(contact);
+            try
+            {
+                contacts[0].FirstName = tb_FirstName.Text;
+                contacts[0].LastName = tb_LastName.Text;
+                contacts[0].Email = tb_Email.Text;
+                contacts[0].StreetName = tb_StreetName.Text;
+                contacts[0].PostalCode = tb_PostalCode.Text;
+                contacts[0].City = tb_City.Text;
+            }catch { }
+            
+
+            _fileManager.Save(_filePath, JsonConvert.SerializeObject(contacts));
         }
     }
 }
